@@ -1,18 +1,32 @@
-open System
-open Microsoft.AspNetCore.Builder
-open Microsoft.Extensions.Hosting
+module FSharpWebbApp.Program
+
+open Falco.HostBuilder
+open Falco.Routing
 open FSharpWebApp.Pages
+
+// let html =
+//     Markup.Elem.html
+//         [ lang "en" ]
+//         [ Markup.Elem.head [] [ title [] [ raw "Sample App" ] ]
+//           body
+//               []
+//               [ main
+//                     []
+//                     [ h1 [] [ raw "Sample App" ]
+//                       // Elem.p [] [ Text.rawf "%s %s" "Kyle" "McMaster" ]
+//                       ] ] ]
 
 [<EntryPoint>]
 let main args =
-    let builder = WebApplication.CreateBuilder(args)
-    let app = builder.Build()
 
-    app.MapGet("/", Func<string>(fun () -> "Hello World!")) |> ignore
+    webHost args {
 
-    // app.MapGet("/index", Func<string>(fun () -> IndexPage.page "Hello Index!"))
-    // |> ignore
+        use_static_files
 
-    app.Run()
+        endpoints
+            [
+              //get "/" (Response.ofHtml IndexPage.html)
+              get "/" IndexPage.handleHtml ]
+    }
 
-    0 // Exit code
+    0
