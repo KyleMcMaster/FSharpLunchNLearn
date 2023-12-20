@@ -1,4 +1,4 @@
-namespace FSharpWebApp.Pages
+namespace FSharpWebApp.Pages.IndexPage
 
 module IndexPage =
     open Falco
@@ -7,7 +7,7 @@ module IndexPage =
     open Falco.Markup.Text
 
     let appTitle = "Lunch-n-Learn App"
-    let heading = "Contributors"
+    let heading = "Index"
 
     let html =
         html
