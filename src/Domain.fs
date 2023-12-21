@@ -11,7 +11,7 @@ module Domain =
           name: string
           status: ContributorStatus }
 
-    let contributors =
+    let private contributors =
         [ { id = 1
             name = "Kyle McMaster"
             status = Company }
@@ -21,5 +21,5 @@ module Domain =
 
     let getContributors () = contributors
 
-    let getContributorById id =
-        contributors |> List.tryFind (fun c -> c.id = id)
+// let getContributorById id =
+//     contributors |> List.tryFind (fun c -> c.id = id)
