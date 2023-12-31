@@ -2,19 +2,12 @@ module FSharpWebbApp.Program
 
 open Falco.HostBuilder
 open Falco.Routing
-open FSharpWebApp.Pages
+open FSharpWebApp.Pages.ContributorsPage
+open FSharpWebApp.Pages.IndexPage
+// open Falco
+// open FSharpWebApp.Domain
 
-// let html =
-//     Markup.Elem.html
-//         [ lang "en" ]
-//         [ Markup.Elem.head [] [ title [] [ raw "Sample App" ] ]
-//           body
-//               []
-//               [ main
-//                     []
-//                     [ h1 [] [ raw "Sample App" ]
-//                       // Elem.p [] [ Text.rawf "%s %s" "Kyle" "McMaster" ]
-//                       ] ] ]
+
 
 [<EntryPoint>]
 let main args =
@@ -25,8 +18,12 @@ let main args =
 
         endpoints
             [
-              //get "/" (Response.ofHtml IndexPage.html)
-              get "/" IndexPage.handleHtml ]
+
+              get "/" IndexPage.handleHtml
+
+              get "/Contributors" ContributorsPage.handleHtml
+
+              ]
     }
 
     0
