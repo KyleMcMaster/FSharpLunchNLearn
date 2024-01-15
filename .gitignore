@@ -399,3 +399,8 @@ FodyWeavers.xsd
 
 # Local Development Settings 
 appsettings.Development.json
+
+# Sqlite
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal

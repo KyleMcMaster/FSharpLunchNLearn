@@ -1,29 +1,46 @@
-module FSharpWebbApp.Program
+namespace FSharpWebApp
 
+open EntityFrameworkCore.FSharp.Extensions
 open Falco.HostBuilder
 open Falco.Routing
 open FSharpWebApp.Pages.ContributorsPage
 open FSharpWebApp.Pages.IndexPage
-// open Falco
-// open FSharpWebApp.Domain
+open Microsoft.AspNetCore.Builder
+open Microsoft.EntityFrameworkCore
+open Microsoft.Extensions.DependencyInjection
+open FSharpWebApp.Infrastructure.Infrastructure
+open Falco
 
+module Program = 
 
+    let ensureDatabaseCreatedAndReset (builder: IApplicationBuilder) =
+        use serviceScope = builder.ApplicationServices.CreateScope()
+        let db = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>()
+        printfn "Contributors inserted: %d " (seedDbContext db)
+        builder
 
-[<EntryPoint>]
-let main args =
+    [<EntryPoint>]
+    let main args =
 
-    webHost args {
+        webHost args {
 
-        use_static_files
+            add_service (fun services ->
+                services.AddDbContext<AppDbContext>(fun options ->
+                    options.UseSqlite("Data Source=\".\\FSharpWebApp.sqlite\"") |> ignore
+                    options.UseFSharpTypes() |> ignore))
 
-        endpoints
-            [
+            use_if FalcoExtensions.IsDevelopment ensureDatabaseCreatedAndReset
 
-              get "/" IndexPage.handleHtml
+            use_static_files
 
-              get "/Contributors" ContributorsPage.handleHtml
+            endpoints
+                [
 
-              ]
-    }
+                  get "/" IndexPage.handleHtml
 
-    0
+                  get "/Contributors" ContributorsPage.handleHtml
+
+                  ]
+        }
+
+        0

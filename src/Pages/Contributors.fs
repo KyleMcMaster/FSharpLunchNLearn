@@ -1,10 +1,13 @@
 namespace FSharpWebApp.Pages.ContributorsPage
 
+open Falco
+open Falco.Markup
+open FSharpWebApp.Domain.Domain
+open FSharpWebApp.Infrastructure.Infrastructure
+open FSharpWebApp.Pages.Shared
+open EntityFrameworkCore.FSharp.DbContextHelpers
+
 module ContributorsPage =
-    open Falco
-    open Falco.Markup
-    open FSharpWebApp.Domain.Domain
-    open FSharpWebApp.Pages.Shared
 
     let title = "Contributors Component"
 
@@ -12,7 +15,7 @@ module ContributorsPage =
         Elem.div
             []
             [ Elem.h2 [] [ Text.raw contributor.name ]
-              Elem.p [] [ Text.raw (sprintf "%A" contributor.id) ]
+              Elem.p [] [ Text.raw (contributor.id.ToString()) ]
               Elem.p [] [ Text.raw (sprintf "%A" contributor.status) ] ]
 
     let contributorsListHtml contributors =
@@ -20,6 +23,12 @@ module ContributorsPage =
           Elem.div [] (contributors |> List.map contributorHtml) ]
 
     // TODO - this is a bit of a hack, but it works for now
-    let contributorPage: XmlNode list = (getContributors >> contributorsListHtml) ()
+    let contributorPage (contributors): XmlNode list = contributorsListHtml contributors
 
-    let handleHtml: HttpHandler = Response.ofHtml (Layout.layout title contributorPage)
+    let handleHtml: HttpHandler =
+      Services.inject<AppDbContext> (fun db ->
+      fun ctx ->
+        task {
+          let! contributors = db.Contributors |> toListAsync
+          return Response.ofHtml (Layout.layout title (contributorPage contributors)) ctx
+        })

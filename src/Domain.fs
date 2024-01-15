@@ -1,25 +1,45 @@
 namespace FSharpWebApp.Domain
 
 module Domain =
-    type ContributorStatus =
-        | Community
-        | Company
-        | NotSet
+    open System.ComponentModel.DataAnnotations
 
+    [<CLIMutable>]
+    type Status = // kind of like SmartEnum base class
+        { Id: int
+          Name: string }
+
+    [<CLIMutable>] // needed for EF Core
     type Contributor =
-        { id: int
+        { 
+          [<Key>]
+          id: int
           name: string
-          status: ContributorStatus }
+          status: int }
 
-    let private contributors =
-        [ { id = 1
-            name = "Kyle McMaster"
-            status = Company }
-          { id = 2
-            name = "John Doe"
-            status = Community } ]
+    //[<CLIMutable>]
+    //type ContributorStatus =
+    //    |  Community
+    //    |  Company
+    //    |  NotSet
 
-    let getContributors () = contributors
+    //    member this.Id =
+    //        match this with
+    //        | Community -> 0
+    //        | Company -> 1
+    //        | NotSet -> 2
 
-// let getContributorById id =
-//     contributors |> List.tryFind (fun c -> c.id = id)
+    //    member this.Name =
+    //        match this with
+    //        | Community -> "Community"
+    //        | Company -> "Company"
+    //        | NotSet -> "Not Set"
+
+    let ContributorStatus: Status list =
+        [ { Id = 0;
+          Name = "Community" };
+        { Id = 1;
+          Name = "Company" };
+        { Id = 2;
+          Name = "Not Set" } ]
+
+    let getIdByName list name = list |> List.find (fun c -> c.Name = name) |> (fun c -> c.Id)
