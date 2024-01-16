@@ -17,7 +17,7 @@ module Program =
     let createAndSeedDatabase (builder: IApplicationBuilder) =
         use serviceScope = builder.ApplicationServices.CreateScope()
         let db = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>()
-        printfn "Contributors inserted: %d " (seedDbContext db)
+        seedDbContext db |> ignore
         builder
 
     [<EntryPoint>]
