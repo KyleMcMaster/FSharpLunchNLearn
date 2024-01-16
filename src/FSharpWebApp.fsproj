@@ -5,6 +5,7 @@
   <ItemGroup>
     <Compile Include="Domain.fs" />
     <Compile Include="Infrastructure.fs" />
+    <Compile Include="Endpoints/Contributors/ContributorEndpoints.fs" />
     <Compile Include="Pages/Shared/Layout.fs" />
     <Compile Include="Pages/Contributors.fs" />
     <Compile Include="Pages/Index.fs" />

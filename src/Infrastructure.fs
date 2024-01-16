@@ -7,12 +7,12 @@ module Infrastructure =
 
     module SeedData =
         let private contributors =
-            [ { id = 1
-                name = "Kyle McMaster"
-                status = getIdByName ContributorStatus "Community" }
-              { id = 2
-                name = "John Doe"
-                status = getIdByName ContributorStatus "Not Set" } ]
+            [ { Id = 1
+                FullName = "Kyle McMaster"
+                Status = FromName "Community" }
+              { Id = 2
+                FullName = "John Doe"
+                Status = FromName "Company" } ]
 
         let Contributors = contributors
 
