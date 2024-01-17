@@ -10,6 +10,12 @@ module ContributorEndpoints =
     type ContributorCreateRequest = { FullName: string; Status: int }
     type ValidatedContributorCreateRequest = { FullName: string; Status: string }
 
+    type ErrorMessage = string
+
+    type ValidationResult =
+        | Ok of ValidatedContributorCreateRequest
+        | Error of ErrorMessage
+
     let getRequestFromJson (ctx: HttpContext) =
         Request.getBodyString ctx
         |> Async.AwaitTask
@@ -23,15 +29,15 @@ module ContributorEndpoints =
         | 2 -> Some "Not Set"
         | _ -> None
 
-    let validateRequest (request: ContributorCreateRequest) : Option<ValidatedContributorCreateRequest> =
+    let validateRequest (request: ContributorCreateRequest) : ValidationResult =
         let status = validateStatus request.Status
 
         match status with
         | Some s ->
-            Some
+            Ok
                 { FullName = request.FullName
                   Status = s }
-        | None -> None
+        | None -> Error "Bad Request"
 
     let createContributor (db: AppDbContext) r =
         let contributor: Contributor =
@@ -41,20 +47,17 @@ module ContributorEndpoints =
 
         db.Contributors.Add contributor |> ignore
         db.SaveChanges() |> ignore
-
         contributor
 
     let handleRequest (db: AppDbContext) (ctx: HttpContext) =
-        let createRequest = getRequestFromJson ctx
-
-        let validatedRequest = validateRequest createRequest
+        let validatedRequest = ctx |> getRequestFromJson |> validateRequest
 
         let result =
             match validatedRequest with
-            | Some req ->
-                let contributor = createContributor db req
+            | Ok validatedContributor ->
+                let contributor = createContributor db validatedContributor
                 Response.ofJson contributor
-            | None -> (Response.withStatusCode 400 >> Response.ofPlainText "Bad Request")
+            | Error errorMessage -> (Response.withStatusCode 400 >> Response.ofPlainText errorMessage)
 
         result ctx
 
