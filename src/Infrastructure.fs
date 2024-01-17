@@ -9,10 +9,10 @@ module Infrastructure =
         let private contributors =
             [ { Id = 1
                 FullName = "Kyle McMaster"
-                Status = FromName "Community" }
+                Status = "Community" }
               { Id = 2
                 FullName = "John Doe"
-                Status = FromName "Company" } ]
+                Status = "Company" } ]
 
         let Contributors = contributors
 

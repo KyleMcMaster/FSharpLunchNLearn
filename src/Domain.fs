@@ -12,7 +12,7 @@ module Domain =
         { [<Key>]
           Id: int
           FullName: string
-          Status: int }
+          Status: string }
 
     //[<CLIMutable>]
     //type ContributorStatus =
@@ -37,5 +37,5 @@ module Domain =
           { Id = 1; Name = "Company" }
           { Id = 2; Name = "Not Set" } ]
 
-    let FromName name =
+    let IdFromName name =
         ContributorStatus |> List.find (fun c -> c.Name = name) |> (fun c -> c.Id)

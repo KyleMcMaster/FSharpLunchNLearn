@@ -37,7 +37,7 @@ module ContributorEndpoints =
         let contributor: Contributor =
             { Id = 0
               FullName = r.FullName
-              Status = FromName r.Status }
+              Status = r.Status }
 
         db.Contributors.Add contributor |> ignore
         db.SaveChanges() |> ignore

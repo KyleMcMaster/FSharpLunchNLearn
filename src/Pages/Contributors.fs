@@ -16,7 +16,7 @@ module ContributorsPage =
             []
             [ Elem.h2 [] [ Text.raw contributor.FullName ]
               Elem.p [] [ Text.raw (contributor.Id.ToString()) ]
-              Elem.p [] [ Text.raw (sprintf "%A" contributor.Status) ] ]
+              Elem.p [] [ Text.raw contributor.Status ] ]
 
     let contributorsListHtml contributors =
         [ Elem.h1 [] [ Text.raw title ]
