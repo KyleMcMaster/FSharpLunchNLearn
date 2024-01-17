@@ -25,11 +25,10 @@
 - Niche enthusiast subject or passion project for most
 - F# has a steep learning curve which is representative of the community in my experience, few intermediate F# resources compared to advanced resources
 
-### Who I follow or have learned from
+### Who I follow
 
 - [Don Syme](https://github.com/dsyme)
 - [Isaac Abraham](https://www.manning.com/books/get-programming-with-f-sharp)
-- [Pim Brouwers](https://github.com/pimbrouwers)
 - [Scott Wlaschin](https://fsharpforfunandprofit.com/)
 - [Ian Russel](https://leanpub.com/essential-fsharp)
 
@@ -56,7 +55,7 @@ Create this to show a resemblance to minimal APIs
 dotnet new web -lang F# -o FSharpWebApp
 ```
 
-Add Falco dependencies and dive in!
+### 2 - Add Falco dependencies and dive in!
 
 - Program entry point
 - Simple Index Page
