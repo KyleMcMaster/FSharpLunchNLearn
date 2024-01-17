@@ -50,7 +50,7 @@ Open in VS, look at the code, run the tests
 
 ### 1 - Initialize new F# Web App using ASP.NET Core
 
-Create this to show resemblance to minimal APIs
+Create this to show a resemblance to minimal APIs
 
 ```bash
 dotnet new web -lang F# -o FSharpWebApp
@@ -58,7 +58,7 @@ dotnet new web -lang F# -o FSharpWebApp
 
 Add Falco dependencies and dive in!
 
-- Program.fs
+- Program entry point
 - Simple Index Page
 - Setup Entity Framework and seed Sqlite DB
 - More complex Contributors Page with create endpoint
