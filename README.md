@@ -78,4 +78,5 @@ Add Falco dependencies and dive in!
 - [F# reference](https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/keyword-reference)
 - [Falco Getting Started](https://www.falcoframework.com/docs/get-started.html)
 - [Falco Markup intro](https://github.com/pimbrouwers/Falco/blob/master/documentation/markup.md)
+- [Why Falco?](https://github.com/pimbrouwers/Falco?tab=readme-ov-file#why-falco)
 - [Donald](https://github.com/pimbrouwers/Donald)

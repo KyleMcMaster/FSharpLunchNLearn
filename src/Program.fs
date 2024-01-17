@@ -28,7 +28,6 @@ module Program =
     [<EntryPoint>]
     let main args =
 
-        // https://github.com/pimbrouwers/Falco?tab=readme-ov-file#why-falco
         // https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions
         webHost args {
 
@@ -40,8 +39,6 @@ module Program =
             // add_service addEntityFramework
 
             use_if FalcoExtensions.IsDevelopment createAndSeedDatabase
-
-            use_static_files
 
             endpoints
                 [
