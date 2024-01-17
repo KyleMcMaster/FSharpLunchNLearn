@@ -19,12 +19,19 @@
 - Definitely not learning VB.NET 💀
 - Have fun! 🎉
 
-## Key Players
+## Commentary on Socials and Community
+
+- Small but active
+- Niche enthusiast subject or passion project for most
+- F# has a steep learning curve which is representative of the community in my experience, few intermediate F# resources compared to advanced resources
+
+### Who I follow or have learned from
 
 - [Don Syme](https://github.com/dsyme)
 - [Isaac Abraham](https://www.manning.com/books/get-programming-with-f-sharp)
 - [Pim Brouwers](https://github.com/pimbrouwers)
 - [Scott Wlaschin](https://fsharpforfunandprofit.com/)
+- [Ian Russel](https://leanpub.com/essential-fsharp)
 
 ## Tooling
 
@@ -43,9 +50,25 @@ Open in VS, look at the code, run the tests
 
 ### 1 - Initialize new F# Web App using ASP.NET Core
 
+Create this to show resemblance to minimal APIs
+
 ```bash
 dotnet new web -lang F# -o FSharpWebApp
 ```
+
+Add Falco dependencies and dive in!
+
+- Program.fs
+- Simple Index Page
+- Setup Entity Framework and seed Sqlite DB
+- More complex Contributors Page with create endpoint
+
+## Future takeaways and next steps
+
+- Type Unions with Entity Framework
+- Donald
+- F# with bare metal ASP.NET Core
+- F# with Azure Functions 👀
 
 ## Resources
 
@@ -55,4 +78,4 @@ dotnet new web -lang F# -o FSharpWebApp
 - [F# reference](https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/keyword-reference)
 - [Falco Getting Started](https://www.falcoframework.com/docs/get-started.html)
 - [Falco Markup intro](https://github.com/pimbrouwers/Falco/blob/master/documentation/markup.md)
-- [Donald] (https://github.com/pimbrouwers/Donald)
+- [Donald](https://github.com/pimbrouwers/Donald)
