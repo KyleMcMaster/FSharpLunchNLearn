@@ -6,7 +6,7 @@ module IndexPage =
     open Falco.Markup.Elem
     open Falco.Markup.Text
 
-    let appTitle = "Lunch-n-Learn App"
+    let appTitle = "Lunch -> n -> Learn App"
     let pageTitle = "Index"
 
     let html =
@@ -18,6 +18,6 @@ module IndexPage =
                   [ main
                         []
                         [ h1 [] [ raw pageTitle ]
-                          p [] [ rawf "Hello my name is %s %s" "Kyle" "McMaster" ] ] ] ]
+                          p [] [ rawf "Hello my name <- %s %s" "Kyle" "McMaster" ] ] ] ]
 
     let handleHtml: HttpHandler = Response.ofHtml html

@@ -65,13 +65,28 @@ module ContributorEndpoints =
 //     Services.inject<AppDbContext> (fun db ->
 //         fun ctx ->
 //             task {
+//                 // Deserialize the request
 //                 let createRequest =
 //                     Request.getBodyString ctx
 //                     |> Async.AwaitTask
 //                     |> Async.RunSynchronously
 //                     |> JsonSerializer.Deserialize<ContributorCreateRequest>
 
-//                 let validatedRequest = validateRequest createRequest
+//                 // Validate the request
+//                 let validatedstatus =
+//                     match createRequest.Status with
+//                     | 0 -> Some "Community"
+//                     | 1 -> Some "Company"
+//                     | 2 -> Some "Not Set"
+//                     | _ -> None
+
+//                 let validatedRequest =
+//                     match validatedstatus with
+//                     | Some s ->
+//                         Some
+//                             { FullName = createRequest.FullName
+//                               Status = s }
+//                     | None -> None
 
 //                 let result =
 //                     match validatedRequest with
@@ -79,7 +94,7 @@ module ContributorEndpoints =
 //                         let contributor: Contributor =
 //                             { Id = 0
 //                               FullName = r.FullName
-//                               Status = FromName r.Status }
+//                               Status = r.Status }
 
 //                         db.Contributors.Add contributor |> ignore
 //                         db.SaveChanges() |> ignore
