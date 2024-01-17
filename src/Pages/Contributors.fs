@@ -10,16 +10,20 @@ open EntityFrameworkCore.FSharp.DbContextHelpers
 module ContributorsPage =
 
     let title = "Contributors Component"
+    let divider = Elem.hr [ Attr.class' "divider" ]
 
     let contributorHtml contributor =
         Elem.div
             []
-            [ Elem.h2 [] [ Text.raw contributor.FullName ]
-              Elem.p [] [ Text.raw (contributor.Id.ToString()) ]
-              Elem.p [] [ Text.raw contributor.Status ] ]
+            [ Elem.h2 [] [ Text.raw (sprintf "%s %s" "Full Name: " contributor.FullName) ]
+              Elem.br []
+              Elem.p [] [ Text.raw (sprintf "%s %A" "Id: " contributor.Id) ]
+              Elem.p [] [ Text.raw (sprintf "%s %s" "Status: " contributor.Status) ]
+              Elem.br [] ]
 
     let contributorsListHtml contributors =
         [ Elem.h1 [] [ Text.raw title ]
+          divider
           Elem.div [] (contributors |> List.map contributorHtml) ]
 
     let contributorPage (contributors) : XmlNode list = contributorsListHtml contributors

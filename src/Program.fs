@@ -20,6 +20,11 @@ module Program =
         seedDbContext db |> ignore
         builder
 
+    let addEntityFramework (services: IServiceCollection) =
+        services.AddDbContext<AppDbContext>(fun options ->
+            options.UseSqlite("Data Source=\".\\FSharpWebApp.sqlite\"") |> ignore
+            options.UseFSharpTypes() |> ignore)
+
     [<EntryPoint>]
     let main args =
 
@@ -31,6 +36,8 @@ module Program =
                 services.AddDbContext<AppDbContext>(fun options ->
                     options.UseSqlite("Data Source=\".\\FSharpWebApp.sqlite\"") |> ignore
                     options.UseFSharpTypes() |> ignore))
+
+            // add_service addEntityFramework
 
             use_if FalcoExtensions.IsDevelopment createAndSeedDatabase
 

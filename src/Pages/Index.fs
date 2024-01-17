@@ -12,12 +12,13 @@ module IndexPage =
     let html =
         html
             [ lang "en" ]
-            [ head [] [ title [] [ raw appTitle ] ]
+            [ head [ class' "my-header-modifier" ] [ title [] [ raw appTitle ] ]
               body
                   []
                   [ main
                         []
                         [ h1 [] [ raw pageTitle ]
-                          p [] [ rawf "Hello my name <- %s %s" "Kyle" "McMaster" ] ] ] ]
+                          p [] [ rawf "Hello my name <- %s %s" "Kyle" "McMaster" ]
+                          a [ href "/contributors" ] [ raw "Contributors" ] ] ] ]
 
     let handleHtml: HttpHandler = Response.ofHtml html
